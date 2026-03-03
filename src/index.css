@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .pause-animation {
+    animation-play-state: paused;
+  }
+}
+
+.phone-pop {
+  display: inline-block;
+  transition: transform 0.2s ease, letter-spacing 0.2s ease, text-shadow 0.2s ease;
+}
+
+.phone-pop:hover {
+  transform: scale(1.12) translateY(-2px);
+  letter-spacing: 0.04em;
+  text-shadow: 0 4px 16px rgba(7, 34, 51, 0.22);
+}

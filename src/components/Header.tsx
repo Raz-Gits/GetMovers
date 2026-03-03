@@ -13,7 +13,7 @@ function getEstimatorCount(): number {
   const hour = now.getHours();
 
   const isBusinessHours =
-    (day >= 1 && day <= 5 && hour >= 9 && hour < 18) ||
+    (day >= 1 && day <= 5 && hour >= 9 && hour < 22) ||
     (day === 0 && hour >= 9 && hour < 16);
 
   if (!isBusinessHours) return 2;

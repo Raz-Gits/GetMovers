@@ -785,7 +785,7 @@ function App() {
         <div className="border-t border-white/10">
           <div className="container mx-auto px-6 md:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-gray-500 text-xs">
             <p>&copy; {new Date().getFullYear()} MC Movers. All rights reserved.</p>
-            <p className="text-right">
+            <p className="text-right whitespace-nowrap text-[10px]">
               LICENSED &amp; INSURED CARRIER &nbsp;|&nbsp; MC #: 00882866 &nbsp;|&nbsp; DOT #: 2538365
             </p>
           </div>

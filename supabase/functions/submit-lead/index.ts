@@ -69,6 +69,34 @@ function mapMoveSize(homeSize: string): string {
   return map[homeSize] || homeSize;
 }
 
+async function sendToN8nWebhook(payload: LeadPayload, rowId: string): Promise<void> {
+  try {
+    const res = await fetch(
+      "https://n8n-main-instance-production-7b51.up.railway.app/webhook/ab6568e9-a412-4e32-91fb-db7662f49107",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          rowId,
+          moveType: payload.moveType,
+          firstName: payload.firstName,
+          lastName: payload.lastName,
+          email: payload.email,
+          phone: payload.phone,
+          currentAddress: payload.currentAddress,
+          destinationAddress: payload.destinationAddress,
+          moveDate: payload.moveDate,
+          homeSize: payload.homeSize,
+          additionalNotes: payload.additionalNotes,
+        }),
+      }
+    );
+    console.log("n8n webhook status:", res.status);
+  } catch (err) {
+    console.error("n8n webhook error:", err);
+  }
+}
+
 async function sendToHelloMoving(
   payload: LeadPayload,
   rowId: string,
@@ -213,6 +241,9 @@ Deno.serve(async (req: Request) => {
 
     if (rowId) {
       EdgeRuntime.waitUntil(sendToHelloMoving(payload, rowId, supabase));
+      if (payload.moveType === "out_of_state") {
+        EdgeRuntime.waitUntil(sendToN8nWebhook(payload, rowId));
+      }
     }
 
     return new Response(

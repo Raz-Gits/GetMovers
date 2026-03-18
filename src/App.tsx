@@ -277,7 +277,7 @@ function App() {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <div className="container mx-auto px-4 pt-48 md:pt-56 pb-12 md:pb-20">
+          <div className="container mx-auto px-4 pt-36 md:pt-56 pb-12 md:pb-20">
             <div className="max-w-5xl mx-auto">
               <div className="bg-white/20 backdrop-blur-md rounded-lg px-8 pt-4 pb-8 md:px-8 md:pt-4 md:pb-6 lg:px-12 lg:pt-6 lg:pb-12 shadow-2xl border border-white/30">
                 <div className="relative z-20 flex justify-center items-center">

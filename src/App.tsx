@@ -738,7 +738,7 @@ function App() {
                 Want an Instant Quote?
               </h2>
               <p className="text-gray-600 text-base leading-relaxed">
-                Skip the wait and get a personalized estimate right now over the phone. Our moving specialists are standing by!
+                Skip the wait and get a personalized estimate right now over the phone. Our estimators are standing by!
               </p>
             </div>
 

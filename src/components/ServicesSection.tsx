@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Phone } from 'lucide-react';
 import militaryImg from '../assets/military.jpg';
 import imageTruck2 from '../assets/imagetruck2.png';
+import { trackCallClick } from '../lib/trackCallClick';
 
 const services = [
   {
@@ -102,6 +103,7 @@ export default function ServicesSection() {
         <div className="flex justify-center mt-10">
           <a
             href="tel:2405990097"
+            onClick={() => trackCallClick('services_section_call')} // call_source: services_section_call
             className="inline-flex items-center gap-3 px-10 py-4 rounded font-bold text-base md:text-lg tracking-widest uppercase text-white transition-all duration-300 hover:scale-105 active:scale-95"
             style={{
               backgroundColor: '#072233',

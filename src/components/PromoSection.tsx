@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import autoTransportImg from '../assets/autotrucknew.jpeg';
+import { trackCallClick, trackCtaClick } from '../lib/trackCallClick';
 
 export default function PromoSection({ onGetQuote }: { onGetQuote: () => void }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -52,6 +53,7 @@ export default function PromoSection({ onGetQuote }: { onGetQuote: () => void })
               CALL{' '}
               <a
                 href="tel:2405990097"
+                onClick={() => trackCallClick('promo_section_call')} // call_source: promo_section_call
                 className="phone-pop transition-all duration-200 inline-block"
                 style={{ color: '#072233' }}
               >
@@ -59,7 +61,7 @@ export default function PromoSection({ onGetQuote }: { onGetQuote: () => void })
               </a>
             </p>
             <button
-              onClick={onGetQuote}
+              onClick={() => { trackCtaClick('promo_section_cta'); onGetQuote(); }} // cta_source: promo_section_cta
               className="inline-block font-bold text-sm tracking-widest uppercase px-10 py-4 rounded transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95"
               style={{
                 backgroundColor: '#dc2626',

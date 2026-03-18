@@ -4,6 +4,7 @@ import LocationInput from './LocationInput';
 import DatePicker from './DatePicker';
 import StepIndicator from './StepIndicator';
 import CallNowBanner from './CallNowBanner';
+import { trackCallClick } from '../lib/trackCallClick';
 
 type MoveType = 'in_state' | 'out_of_state' | null;
 type FormStep = 'select_type' | 'location' | 'move_date_size' | 'contact_info';
@@ -263,6 +264,7 @@ export default function BottomQuoteForm() {
                 <div className="text-center pt-2 space-y-3">
                   <a
                     href="tel:2405990097"
+                    onClick={() => trackCallClick('bottom_form_phone')} // call_source: bottom_form_phone
                     className="inline-flex items-center gap-4 md:gap-5 hover:opacity-90 transition-opacity duration-300"
                   >
                     <div className="bg-red-600 rounded-full p-2.5 md:p-4 flex items-center justify-center shadow-lg">
@@ -272,7 +274,7 @@ export default function BottomQuoteForm() {
                       (240) 599-0097
                     </span>
                   </a>
-                  <a href="tel:2405990097" className="block text-lg md:text-2xl text-white font-bold hover:opacity-90 transition-opacity duration-300">
+                  <a href="tel:2405990097" onClick={() => trackCallClick('bottom_form_text')} className="block text-lg md:text-2xl text-white font-bold hover:opacity-90 transition-opacity duration-300"> {/* call_source: bottom_form_text */}
                     Call Today - Phone Reservations get $500 off!
                   </a>
                 </div>
@@ -598,6 +600,7 @@ export default function BottomQuoteForm() {
               <p className="text-gray-600 text-sm mb-5">Exclusive phone-only discount for a limited time.</p>
               <a
                 href="tel:2405990097"
+                onClick={() => trackCallClick('bottom_location_modal_call')} // call_source: bottom_location_modal_call
                 className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 text-lg shadow-md w-full justify-center"
               >
                 <Phone className="w-5 h-5" />
@@ -641,6 +644,7 @@ export default function BottomQuoteForm() {
               <p className="text-gray-600 text-sm mb-5">Get $500 off for a Phone Estimate Today!</p>
               <a
                 href="tel:2405990097"
+                onClick={() => trackCallClick('bottom_confirmation_modal_call')} // call_source: bottom_confirmation_modal_call
                 className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 text-lg shadow-md w-full justify-center"
               >
                 <Phone className="w-5 h-5" />

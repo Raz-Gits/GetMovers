@@ -1,4 +1,5 @@
 import { Phone } from 'lucide-react';
+import { trackCallClick } from '../lib/trackCallClick';
 
 interface CallNowBannerProps {
   isLandingPage?: boolean;
@@ -10,6 +11,7 @@ export default function CallNowBanner({ isLandingPage = false }: CallNowBannerPr
       <div className="text-center pt-0 pb-6 space-y-3">
         <a
           href="tel:2405990097"
+          onClick={() => trackCallClick('landing_banner_phone')} // call_source: landing_banner_phone
           className="inline-flex items-center gap-4 md:gap-5 hover:opacity-90 transition-opacity duration-300"
           style={{ color: '#072233' }}
         >
@@ -20,7 +22,7 @@ export default function CallNowBanner({ isLandingPage = false }: CallNowBannerPr
             (240) 599-0097
           </div>
         </a>
-        <a href="tel:2405990097" className="block text-xl md:text-2xl text-white font-bold hover:opacity-90 transition-opacity duration-300">
+        <a href="tel:2405990097" onClick={() => trackCallClick('landing_banner_text')} className="block text-xl md:text-2xl text-white font-bold hover:opacity-90 transition-opacity duration-300"> {/* call_source: landing_banner_text */}
           Call Today - Phone Reservations get $500 off!
         </a>
       </div>
@@ -31,6 +33,7 @@ export default function CallNowBanner({ isLandingPage = false }: CallNowBannerPr
     <div className="text-center py-6 space-y-3">
       <a
         href="tel:2405990097"
+        onClick={() => trackCallClick('form_step_banner_phone')} // call_source: form_step_banner_phone
         className="inline-flex items-center gap-4 md:gap-5 hover:opacity-90 transition-opacity duration-300"
         style={{ color: '#072233' }}
       >
@@ -41,7 +44,7 @@ export default function CallNowBanner({ isLandingPage = false }: CallNowBannerPr
           (240) 599-0097
         </div>
       </a>
-      <a href="tel:2405990097" className="block text-xl md:text-2xl font-bold hover:opacity-90 transition-opacity duration-300" style={{ color: '#072233' }}>
+      <a href="tel:2405990097" onClick={() => trackCallClick('form_step_banner_text')} className="block text-xl md:text-2xl font-bold hover:opacity-90 transition-opacity duration-300" style={{ color: '#072233' }}> {/* call_source: form_step_banner_text */}
         Call Now
       </a>
     </div>

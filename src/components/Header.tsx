@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Phone } from 'lucide-react';
 import logo from '../assets/mcmovers_logo.png';
 import secondLogo from '../assets/2ecfc5b1-4ff7-4135-940f-56ae4c9001d9 copy.png';
+import { trackCallClick } from '../lib/trackCallClick';
 
 interface HeaderProps {
   forceCollapsed?: boolean;
@@ -121,6 +122,7 @@ export default function Header({ forceCollapsed = false, hideEstimators = false 
 
               <a
                 href="tel:2405990097"
+                onClick={() => trackCallClick('header_phone')} // call_source: header_phone
                 className="flex items-center gap-2 md:gap-2.5 hover:opacity-90 transition-opacity duration-300 flex-shrink-0"
               >
                 <div

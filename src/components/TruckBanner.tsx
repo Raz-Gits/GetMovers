@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import truckMovingVideo from '../assets/truckmoving.mov';
+import { trackCtaClick } from '../lib/trackCallClick';
 
 function useSlideIn(direction: 'left' | 'right') {
   const ref = useRef<HTMLDivElement>(null);
@@ -97,7 +98,7 @@ export default function TruckBanner({ onGetQuote }: TruckBannerProps) {
 
         <div ref={slideUp.ref} className={slideUp.className} style={{ transitionDelay: '800ms' }}>
           <button
-            onClick={onGetQuote}
+            onClick={() => { trackCtaClick('truck_banner_cta'); onGetQuote(); }} // cta_source: truck_banner_cta
             className="inline-block font-bold text-xs md:text-sm tracking-widest uppercase px-10 py-4 rounded transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95 whitespace-nowrap"
             style={{
               backgroundColor: '#dc2626',

@@ -8,6 +8,7 @@ import BadgeCarousel from './components/BadgeCarousel';
 import ServicesSection from './components/ServicesSection';
 import TruckBanner from './components/TruckBanner';
 import PromoSection from './components/PromoSection';
+import BottomQuoteForm from './components/BottomQuoteForm';
 import GoogleReviewsSection from './components/GoogleReviewsSection';
 import StepIndicator from './components/StepIndicator';
 import couchboxBg from './assets/newbackground.png';
@@ -344,6 +345,7 @@ function App() {
       {step === 'select_type' && <TruckBanner onGetQuote={handleGetQuote} />}
       {step === 'select_type' && <GoogleReviewsSection />}
       {step === 'select_type' && <PromoSection onGetQuote={handleGetQuote} />}
+      {step === 'select_type' && <BottomQuoteForm />}
 
       <div className={`container mx-auto px-4 pb-12 md:pb-20 transition-all duration-300 ${
         step === 'select_type' ? 'hidden' : 'pt-24 md:pt-28'

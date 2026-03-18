@@ -294,7 +294,7 @@ function App() {
                         : 'text-white'
                     }`}
                   >
-                    <span className="font-bold" style={{ color: '#ffffff', WebkitTextStroke: '2px #000000', textStroke: '2px #000000' }}>STEP 1:</span>
+                    <span className="font-bold" style={{ color: '#000000' }}>STEP 1:</span>
                     <br />
                     Are you moving In-state or Out-of State?
                   </p>

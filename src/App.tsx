@@ -108,6 +108,7 @@ function App() {
     setShowPromo(false);
     setFormData({ ...formData, moveType: type });
     setStep('location');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleLocationNext = () => {
@@ -119,6 +120,7 @@ function App() {
   const handleLocationContinue = () => {
     setShowLocationCallModal(false);
     setStep('move_date_size');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleHomeSizeSelect = (size: string) => {
@@ -128,6 +130,7 @@ function App() {
   const handleMoveDateSizeNext = () => {
     if (formData.homeSize && formData.moveDate) {
       setStep('contact_info');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -351,7 +354,7 @@ function App() {
               <StepIndicator currentStep={step} />
 
               <button
-                onClick={() => setStep('select_type')}
+                onClick={() => { setStep('select_type'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="text-slate-800 hover:text-red-600 flex items-center text-lg font-medium transition-colors"
               >
                 <ArrowRight className="w-5 h-5 rotate-180 mr-2" />
@@ -400,7 +403,7 @@ function App() {
               <StepIndicator currentStep={step} />
 
               <button
-                onClick={() => setStep('location')}
+                onClick={() => { setStep('location'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="text-slate-800 hover:text-red-600 flex items-center text-lg font-medium transition-colors"
               >
                 <ArrowRight className="w-5 h-5 rotate-180 mr-2" />
@@ -508,7 +511,7 @@ function App() {
               <StepIndicator currentStep={step} />
 
               <button
-                onClick={() => setStep('move_date_size')}
+                onClick={() => { setStep('move_date_size'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="text-slate-800 hover:text-red-600 flex items-center text-lg font-medium transition-colors"
               >
                 <ArrowRight className="w-5 h-5 rotate-180 mr-2" />

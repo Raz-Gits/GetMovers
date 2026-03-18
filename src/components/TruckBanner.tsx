@@ -98,7 +98,7 @@ export default function TruckBanner({ onGetQuote }: TruckBannerProps) {
         <div ref={slideUp.ref} className={slideUp.className} style={{ transitionDelay: '800ms' }}>
           <button
             onClick={onGetQuote}
-            className="inline-block font-bold text-sm md:text-base tracking-widest uppercase px-10 py-4 rounded transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
+            className="inline-block font-bold text-xs md:text-sm tracking-widest uppercase px-10 py-4 rounded transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95 whitespace-nowrap"
             style={{
               backgroundColor: '#dc2626',
               color: '#fff',

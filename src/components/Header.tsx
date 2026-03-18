@@ -25,7 +25,15 @@ function getEstimatorCount(): number {
 
 export default function Header({ forceCollapsed = false }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [estimatorCount, setEstimatorCount] = useState(getEstimatorCount);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +50,7 @@ export default function Header({ forceCollapsed = false }: HeaderProps) {
     return () => clearInterval(interval);
   }, []);
 
-  const collapsed = scrolled || forceCollapsed;
+  const collapsed = isMobile ? false : (scrolled || forceCollapsed);
 
   return (
     <>

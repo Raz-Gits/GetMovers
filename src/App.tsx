@@ -384,7 +384,7 @@ function App() {
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0a2d42'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#072233'}
               >
-                Start Your Move - Get $500 Off
+                Next
               </button>
 
               <CallNowBanner />

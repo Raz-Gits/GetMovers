@@ -282,7 +282,7 @@ function App() {
               <div className="bg-white/20 backdrop-blur-md rounded-lg px-8 pt-4 pb-8 md:px-8 md:pt-4 md:pb-6 lg:px-12 lg:pt-6 lg:pb-12 shadow-2xl border border-white/30">
                 <div className="relative z-20 text-center">
                   <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight px-2 whitespace-nowrap text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
-                    Get Help Moving From <span style={{ fontFamily: 'sans-serif' }}>$1,999</span> Today!
+                    Request a FREE Moving Quote Today!
                   </h1>
                 </div>
 

@@ -103,6 +103,11 @@ function App() {
   }, []);
 
   const handleMoveTypeSelect = (type: MoveType) => {
+    gtag('event', 'form_step', {
+      step_number: 1,
+      step_name: 'location',
+      move_type: type,
+    });
     moveTypeSelectedRef.current = true;
     if (promoTimerRef.current) clearTimeout(promoTimerRef.current);
     if (promoReshowTimerRef.current) clearTimeout(promoReshowTimerRef.current);
@@ -114,6 +119,10 @@ function App() {
 
   const handleLocationNext = () => {
     if (isFromValid && isToValid) {
+      gtag('event', 'form_step', {
+        step_number: 2,
+        step_name: 'moving_locations',
+      });
       setShowLocationCallModal(true);
     }
   };
@@ -125,6 +134,11 @@ function App() {
   };
 
   const handleHomeSizeSelect = (size: string) => {
+    gtag('event', 'form_step', {
+      step_number: 3,
+      step_name: 'home_size',
+      bedroom_count: size,
+    });
     setFormData({ ...formData, homeSize: size });
   };
 
@@ -200,6 +214,10 @@ function App() {
 
   const handleContactNext = () => {
     if (validateContactFields()) {
+      gtag('event', 'form_step', {
+        step_number: 4,
+        step_name: 'contact_info',
+      });
       handleSubmit();
     }
   };
@@ -232,6 +250,11 @@ function App() {
       });
 
       if (!response.ok) throw new Error('Submission failed');
+
+      gtag('event', 'form_submitted', {
+        step_number: 4,
+        step_name: 'quote_submitted',
+      });
 
       setStep('select_type');
       setShowConfirmation(true);
@@ -319,7 +342,14 @@ function App() {
                   </button>
 
                   <button
-                    onClick={() => setShowInStateModal(true)}
+                    onClick={() => {
+                      gtag('event', 'form_step', {
+                        step_number: 1,
+                        step_name: 'location',
+                        move_type: 'in_state',
+                      });
+                      setShowInStateModal(true);
+                    }}
                     className={`group bg-white border-4 rounded-2xl aspect-square md:aspect-auto p-4 md:p-5 lg:p-10 hover:bg-red-50 hover:border-red-600 transition-all duration-300 hover:shadow-xl ${highlightMoveType ? 'animate-pulse shadow-[0_0_20px_rgba(253,224,71,0.7)]' : ''}`}
                     style={{ borderColor: highlightMoveType ? '#fde047' : '#072233' }}
                   >

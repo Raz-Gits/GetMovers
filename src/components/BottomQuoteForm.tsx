@@ -75,6 +75,11 @@ export default function BottomQuoteForm() {
   };
 
   const handleMoveTypeSelect = (type: MoveType) => {
+    gtag('event', 'form_step', {
+      step_number: 1,
+      step_name: 'bottom_location',
+      move_type: type,
+    });
     setFormData({ ...formData, moveType: type });
     setStep('location');
     scrollToForm();
@@ -82,6 +87,10 @@ export default function BottomQuoteForm() {
 
   const handleLocationNext = () => {
     if (isFromValid && isToValid) {
+      gtag('event', 'form_step', {
+        step_number: 2,
+        step_name: 'bottom_moving_locations',
+      });
       setShowLocationCallModal(true);
     }
   };
@@ -93,6 +102,11 @@ export default function BottomQuoteForm() {
   };
 
   const handleHomeSizeSelect = (size: string) => {
+    gtag('event', 'form_step', {
+      step_number: 3,
+      step_name: 'bottom_home_size',
+      bedroom_count: size,
+    });
     setFormData({ ...formData, homeSize: size });
   };
 
@@ -135,7 +149,13 @@ export default function BottomQuoteForm() {
   };
 
   const handleContactNext = () => {
-    if (validateContactFields()) handleSubmit();
+    if (validateContactFields()) {
+      gtag('event', 'form_step', {
+        step_number: 4,
+        step_name: 'bottom_contact_info',
+      });
+      handleSubmit();
+    }
   };
 
   const handleSubmit = async () => {
@@ -157,6 +177,10 @@ export default function BottomQuoteForm() {
         }),
       });
       if (!response.ok) throw new Error('Submission failed');
+      gtag('event', 'form_submitted', {
+        step_number: 4,
+        step_name: 'bottom_quote_submitted',
+      });
       setShowConfirmation(true);
       setStep('select_type');
       setFormData({
@@ -217,7 +241,14 @@ export default function BottomQuoteForm() {
                   </button>
 
                   <button
-                    onClick={() => setShowInStateModal(true)}
+                    onClick={() => {
+                      gtag('event', 'form_step', {
+                        step_number: 1,
+                        step_name: 'bottom_location',
+                        move_type: 'in_state',
+                      });
+                      setShowInStateModal(true);
+                    }}
                     className="group bg-white border-4 border-white rounded-2xl aspect-square md:aspect-auto p-4 md:p-8 hover:bg-red-50 hover:border-red-600 transition-all duration-300 hover:shadow-xl"
                   >
                     <div className="flex flex-col items-center justify-center h-full space-y-2 md:space-y-4">

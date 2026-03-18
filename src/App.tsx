@@ -294,7 +294,9 @@ function App() {
                         : 'text-white'
                     }`}
                   >
-                    <span className="text-white font-bold">STEP 1:</span> Are you moving In-state or Out-of State?
+                    <span className="font-bold" style={{ color: '#dc2626' }}>STEP 1:</span>
+                    <br />
+                    Are you moving In-state or Out-of State?
                   </p>
 
                   <div className="grid grid-cols-2 gap-6 md:gap-4 lg:gap-8">

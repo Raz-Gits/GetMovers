@@ -479,8 +479,10 @@ function App() {
                 </div>
               </div>
 
-              <div className="w-full bg-red-600 rounded-xl py-3 md:py-4 px-6">
-                <p className="text-center text-base md:text-lg lg:text-xl font-bold tracking-wide text-white">Moves Starting at $1,999</p>
+              <div className="w-full -mx-4 md:-mx-0 px-4 md:px-0">
+                <div className="w-full bg-red-600/10 border-l-4 border-red-600 py-3 md:py-4 px-6">
+                  <p className="text-base md:text-lg lg:text-xl font-bold tracking-wide text-red-600">Moves Starting at $1,999</p>
+                </div>
               </div>
 
               <div className="space-y-8">

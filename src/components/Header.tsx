@@ -55,9 +55,7 @@ export default function Header({ forceCollapsed = false }: HeaderProps) {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 z-50 bg-red-700 text-white text-[10px] md:text-sm font-medium transition-all duration-300 overflow-hidden ${
-          collapsed ? 'max-h-0 opacity-0' : 'max-h-10 opacity-100'
-        }`}
+        className="bg-red-700 text-white text-[10px] md:text-sm font-medium"
       >
         <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-8 px-4 py-2">
           <span className="tracking-wide uppercase">Licensed & Insured Carrier</span>

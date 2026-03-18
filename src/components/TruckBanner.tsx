@@ -107,7 +107,7 @@ export default function TruckBanner({ onGetQuote }: TruckBannerProps) {
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#b91c1c')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#dc2626')}
           >
-            Request a Free Estimate
+            Start Your Move - Get $500 Off
           </button>
         </div>
 

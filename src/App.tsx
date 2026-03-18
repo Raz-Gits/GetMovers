@@ -353,8 +353,6 @@ function App() {
             <div className="max-w-4xl mx-auto space-y-8 md:space-y-10">
               <StepIndicator currentStep={step} />
 
-              <p className="text-center text-sm md:text-base font-semibold tracking-wide text-red-600">Moves Starting at $1,999</p>
-
               <button
                 onClick={() => { setStep('select_type'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="text-slate-800 hover:text-red-600 flex items-center text-lg font-medium transition-colors"
@@ -403,8 +401,6 @@ function App() {
           {step === 'move_date_size' && (
             <div className="max-w-4xl mx-auto space-y-10 md:space-y-12">
               <StepIndicator currentStep={step} />
-
-              <p className="text-center text-sm md:text-base font-semibold tracking-wide text-red-600">Moves Starting at $1,999</p>
 
               <button
                 onClick={() => { setStep('location'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -483,6 +479,8 @@ function App() {
                 </div>
               </div>
 
+              <p className="text-center text-sm md:text-base font-semibold tracking-wide text-red-600">Moves Starting at $1,999</p>
+
               <div className="space-y-8">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: '#072233' }}>
                   When are you planning to move?
@@ -513,8 +511,6 @@ function App() {
           {step === 'contact_info' && (
             <div className="max-w-4xl mx-auto space-y-10 md:space-y-12">
               <StepIndicator currentStep={step} />
-
-              <p className="text-center text-sm md:text-base font-semibold tracking-wide text-red-600">Moves Starting at $1,999</p>
 
               <button
                 onClick={() => { setStep('move_date_size'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}

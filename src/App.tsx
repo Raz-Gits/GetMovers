@@ -280,8 +280,8 @@ function App() {
           <div className="container mx-auto px-4 pt-48 md:pt-56 pb-12 md:pb-20">
             <div className="max-w-5xl mx-auto">
               <div className="bg-white/20 backdrop-blur-md rounded-lg px-8 pt-4 pb-8 md:px-8 md:pt-4 md:pb-6 lg:px-12 lg:pt-6 lg:pb-12 shadow-2xl border border-white/30">
-                <div className="relative z-20 text-center">
-                  <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight px-2 whitespace-nowrap text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <div className="relative z-20 flex justify-center items-center">
+                  <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight px-2 whitespace-nowrap text-white text-center w-full" style={{ fontFamily: "'Playfair Display', serif" }}>
                     Request a FREE Moving Quote Today!
                   </h1>
                 </div>
@@ -294,7 +294,7 @@ function App() {
                         : 'text-white'
                     }`}
                   >
-                    <span className="font-bold" style={{ color: '#dc2626' }}>STEP 1:</span>
+                    <span className="font-bold" style={{ color: '#ffffff', WebkitTextStroke: '2px #000000', textStroke: '2px #000000' }}>STEP 1:</span>
                     <br />
                     Are you moving In-state or Out-of State?
                   </p>

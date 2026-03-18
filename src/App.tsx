@@ -294,7 +294,7 @@ function App() {
                         : 'text-white'
                     }`}
                   >
-                    <span className="inline-flex items-center gap-2 font-bold" style={{ color: '#000000' }}>Step <span className="inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-red-600 text-white text-sm md:text-base font-bold">1</span></span>
+                    <span className="inline-flex items-center gap-2 font-bold" style={{ color: '#ffffff' }}>Step <span className="inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-red-600 text-white text-sm md:text-base font-bold">1</span></span>
                     <br />
                     Are you moving In-state or Out-of State?
                   </p>

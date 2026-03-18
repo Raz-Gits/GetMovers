@@ -58,6 +58,7 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showInStateModal, setShowInStateModal] = useState(false);
+  const [showLocationCallModal, setShowLocationCallModal] = useState(false);
   const [showPromo, setShowPromo] = useState(false);
   const [highlightMoveType, setHighlightMoveType] = useState(false);
   const promoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -110,8 +111,13 @@ function App() {
 
   const handleLocationNext = () => {
     if (isFromValid && isToValid) {
-      setStep('move_date_size');
+      setShowLocationCallModal(true);
     }
+  };
+
+  const handleLocationContinue = () => {
+    setShowLocationCallModal(false);
+    setStep('move_date_size');
   };
 
   const handleHomeSizeSelect = (size: string) => {
@@ -698,6 +704,50 @@ function App() {
                 Go Back
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showLocationCallModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg mx-auto p-8 md:p-10 relative animate-fadeInScale">
+            <button
+              onClick={handleLocationContinue}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="text-center mb-6">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: '#e8f0f5' }}>
+                <Phone className="w-10 h-10" style={{ color: '#072233' }} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Want an Instant Quote?
+              </h2>
+              <p className="text-gray-600 text-base leading-relaxed">
+                Skip the wait and get a personalized estimate right now over the phone. Our moving specialists are standing by!
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100 mb-4">
+              <h3 className="text-lg font-bold text-gray-900 mb-1">Call Now & Save $500</h3>
+              <p className="text-gray-600 text-sm mb-5">Exclusive phone-only discount for a limited time.</p>
+              <a
+                href="tel:2405990097"
+                className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 text-lg shadow-md w-full justify-center"
+              >
+                <Phone className="w-5 h-5" />
+                <span className="phone-pop">(240) 599-0097</span>
+              </a>
+            </div>
+
+            <button
+              onClick={handleLocationContinue}
+              className="w-full py-3 px-8 rounded-2xl border-2 border-gray-200 text-gray-600 font-semibold text-sm hover:border-gray-300 hover:text-gray-800 transition-all duration-200"
+            >
+              Continue with Online Quote
+            </button>
           </div>
         </div>
       )}

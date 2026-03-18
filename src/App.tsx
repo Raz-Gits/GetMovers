@@ -269,7 +269,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header forceCollapsed={step !== 'select_type'} />
+      <Header forceCollapsed={step !== 'select_type'} hideEstimators={step !== 'select_type'} />
 
       {step === 'select_type' && (
         <div

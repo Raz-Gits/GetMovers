@@ -5,6 +5,7 @@ import secondLogo from '../assets/2ecfc5b1-4ff7-4135-940f-56ae4c9001d9 copy.png'
 
 interface HeaderProps {
   forceCollapsed?: boolean;
+  hideEstimators?: boolean;
 }
 
 function getEstimatorCount(): number {
@@ -23,7 +24,7 @@ function getEstimatorCount(): number {
   return 5 + rng;
 }
 
-export default function Header({ forceCollapsed = false }: HeaderProps) {
+export default function Header({ forceCollapsed = false, hideEstimators = false }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [estimatorCount, setEstimatorCount] = useState(getEstimatorCount);
@@ -155,7 +156,7 @@ export default function Header({ forceCollapsed = false }: HeaderProps) {
 
           <div
             className={`absolute right-0 transition-all duration-300 ${
-              collapsed ? 'opacity-0 pointer-events-none top-full mt-1' : 'opacity-100 top-full mt-2'
+              collapsed || hideEstimators ? 'opacity-0 pointer-events-none top-full mt-1' : 'opacity-100 top-full mt-2'
             }`}
           >
             <div className="flex items-center gap-1.5 bg-white rounded-full px-3 py-1 shadow-md border border-gray-100">

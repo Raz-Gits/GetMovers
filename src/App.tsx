@@ -9,6 +9,7 @@ import ServicesSection from './components/ServicesSection';
 import TruckBanner from './components/TruckBanner';
 import PromoSection from './components/PromoSection';
 import GoogleReviewsSection from './components/GoogleReviewsSection';
+import StepIndicator from './components/StepIndicator';
 import couchboxBg from './assets/newbackground.png';
 import mcMoversLogo from './assets/mcmovers_logo.png';
 import shakingHandsImg from './assets/shakinghandsmovers.png';
@@ -287,6 +288,8 @@ function App() {
                 </div>
 
                 <div className="relative z-20 max-w-4xl mx-auto space-y-4 md:space-y-4 lg:space-y-8 mt-4 md:mt-4 lg:mt-6">
+                  <StepIndicator currentStep={step} variant="light" />
+
                   <div
                     className={`text-xl md:text-2xl text-left font-bold transition-all duration-500 rounded-lg px-3 py-2 -mx-3 ${
                       highlightMoveType
@@ -294,8 +297,7 @@ function App() {
                         : 'text-white'
                     }`}
                   >
-                    <span className="inline-flex items-center gap-2 font-bold" style={{ color: '#ffffff' }}>Step <span className="inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-red-600 text-white text-sm md:text-base font-bold">1</span></span>
-                    <div className="mt-3">Are you moving In-state or Out-of State?</div>
+                    Are you moving In-state or Out-of State?
                   </div>
 
                   <div className="grid grid-cols-2 gap-6 md:gap-4 lg:gap-8">
@@ -346,6 +348,8 @@ function App() {
         <div className="max-w-6xl mx-auto">
           {step === 'location' && (
             <div className="max-w-4xl mx-auto space-y-8 md:space-y-10">
+              <StepIndicator currentStep={step} />
+
               <button
                 onClick={() => setStep('select_type')}
                 className="text-slate-800 hover:text-red-600 flex items-center text-lg font-medium transition-colors"
@@ -393,6 +397,8 @@ function App() {
 
           {step === 'move_date_size' && (
             <div className="max-w-4xl mx-auto space-y-10 md:space-y-12">
+              <StepIndicator currentStep={step} />
+
               <button
                 onClick={() => setStep('location')}
                 className="text-slate-800 hover:text-red-600 flex items-center text-lg font-medium transition-colors"
@@ -499,6 +505,8 @@ function App() {
 
           {step === 'contact_info' && (
             <div className="max-w-4xl mx-auto space-y-10 md:space-y-12">
+              <StepIndicator currentStep={step} />
+
               <button
                 onClick={() => setStep('move_date_size')}
                 className="text-slate-800 hover:text-red-600 flex items-center text-lg font-medium transition-colors"

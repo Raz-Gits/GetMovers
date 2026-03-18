@@ -479,7 +479,9 @@ function App() {
                 </div>
               </div>
 
-              <p className="text-center text-sm md:text-base font-semibold tracking-wide text-red-600">Moves Starting at $1,999</p>
+              <div className="w-full bg-red-600 rounded-xl py-3 md:py-4 px-6">
+                <p className="text-center text-base md:text-lg lg:text-xl font-bold tracking-wide text-white">Moves Starting at $1,999</p>
+              </div>
 
               <div className="space-y-8">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: '#072233' }}>

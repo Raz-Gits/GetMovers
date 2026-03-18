@@ -55,7 +55,7 @@ export default function Header({ forceCollapsed = false }: HeaderProps) {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 z-50 bg-red-700 text-white text-[10px] md:text-sm font-medium transition-all duration-300 overflow-hidden ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-red-700 text-white text-[10px] md:text-sm font-medium transition-all duration-300 overflow-hidden hidden md:block ${
           collapsed ? 'max-h-0 opacity-0' : 'max-h-10 opacity-100'
         }`}
       >
@@ -72,7 +72,7 @@ export default function Header({ forceCollapsed = false }: HeaderProps) {
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           collapsed
             ? 'top-0 py-0.5'
-            : 'top-[36px] py-2 md:py-2.5'
+            : 'top-0 md:top-[36px] py-2 md:py-2.5'
         }`}
       >
         <div className="relative mx-2 md:mx-8">
@@ -153,9 +153,9 @@ export default function Header({ forceCollapsed = false }: HeaderProps) {
           </div>
 
           <div
-            className={`absolute right-0 transition-all duration-300 ${
-              collapsed ? 'opacity-0 pointer-events-none top-full mt-1' : 'opacity-100 top-full mt-2'
-            }`}
+            className={`transition-all duration-300 md:absolute md:right-0 ${
+              collapsed ? 'opacity-0 pointer-events-none md:top-full md:mt-1' : 'opacity-100 md:top-full md:mt-2'
+            } flex md:block justify-center mt-1 md:mt-0`}
           >
             <div className="flex items-center gap-1.5 bg-white rounded-full px-3 py-1 shadow-md border border-gray-100">
               <span className="relative flex h-2 w-2">

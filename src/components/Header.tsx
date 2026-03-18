@@ -51,6 +51,7 @@ export default function Header({ forceCollapsed = false }: HeaderProps) {
   }, []);
 
   const collapsed = isMobile ? false : (scrolled || forceCollapsed);
+  const mobileScrolled = isMobile && scrolled;
 
   return (
     <>
@@ -70,7 +71,9 @@ export default function Header({ forceCollapsed = false }: HeaderProps) {
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           collapsed
             ? 'top-0 py-0.5'
-            : 'top-[36px] py-2 md:py-2.5'
+            : mobileScrolled
+              ? 'top-0 py-2'
+              : 'top-[36px] py-2 md:py-2.5'
         }`}
       >
         <div className="relative mx-2 md:mx-8">

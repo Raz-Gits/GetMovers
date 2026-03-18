@@ -287,7 +287,7 @@ function App() {
                 </div>
 
                 <div className="relative z-20 max-w-4xl mx-auto space-y-4 md:space-y-4 lg:space-y-8 mt-4 md:mt-4 lg:mt-6">
-                  <p
+                  <div
                     className={`text-xl md:text-2xl text-left font-bold transition-all duration-500 rounded-lg px-3 py-2 -mx-3 ${
                       highlightMoveType
                         ? 'text-yellow-300 scale-105 drop-shadow-[0_0_16px_rgba(253,224,71,0.9)]'
@@ -295,9 +295,8 @@ function App() {
                     }`}
                   >
                     <span className="inline-flex items-center gap-2 font-bold" style={{ color: '#ffffff' }}>Step <span className="inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-red-600 text-white text-sm md:text-base font-bold">1</span></span>
-                    <br />
-                    Are you moving In-state or Out-of State?
-                  </p>
+                    <div className="mt-3">Are you moving In-state or Out-of State?</div>
+                  </div>
 
                   <div className="grid grid-cols-2 gap-6 md:gap-4 lg:gap-8">
                   <button

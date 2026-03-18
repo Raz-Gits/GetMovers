@@ -33,11 +33,16 @@ export default function StepIndicator({ currentStep, variant = 'dark' }: StepInd
               <div
                 className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-lg font-bold transition-all duration-300 ${
                   isCompleted
-                    ? 'bg-green-500 text-white'
+                    ? 'text-white'
                     : isActive
-                      ? 'bg-green-500 text-white shadow-lg shadow-green-500/30'
+                      ? 'text-white shadow-lg'
                       : 'bg-gray-200 text-gray-400'
                 }`}
+                style={
+                  isCompleted || isActive
+                    ? { backgroundColor: '#072233', boxShadow: isActive ? '0 10px 15px -3px rgba(7,34,51,0.3)' : undefined }
+                    : undefined
+                }
               >
                 {isCompleted ? <Check className="w-5 h-5 md:w-6 md:h-6" strokeWidth={3} /> : i + 1}
               </div>
@@ -56,8 +61,9 @@ export default function StepIndicator({ currentStep, variant = 'dark' }: StepInd
               <div className="flex-1 mx-2 md:mx-3 mb-6">
                 <div
                   className={`h-1 rounded-full transition-all duration-500 ${
-                    i < activeIndex ? 'bg-green-500' : 'bg-gray-200'
+                    i < activeIndex ? '' : 'bg-gray-200'
                   }`}
+                  style={i < activeIndex ? { backgroundColor: '#072233' } : undefined}
                 />
               </div>
             )}

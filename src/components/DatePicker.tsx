@@ -33,23 +33,9 @@ function formatDateDisplay(dateStr: string): string {
   return `${MONTHS[month - 1]} ${day}, ${year}`;
 }
 
-function isValidDateString(str: string): boolean {
-  const regex = /^\d{4}-\d{2}-\d{2}$/;
-  if (!regex.test(str)) return false;
-  const [year, month, day] = str.split('-').map(Number);
-  if (month < 1 || month > 12) return false;
-  const daysInMonth = getDaysInMonth(year, month - 1);
-  if (day < 1 || day > daysInMonth) return false;
-  return true;
-}
-
 export default function DatePicker({ value, onChange, placeholder = 'Select a date' }: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
-  const [typedValue, setTypedValue] = useState('');
-  const [typeError, setTypeError] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -62,8 +48,6 @@ export default function DatePicker({ value, onChange, placeholder = 'Select a da
     function handleClickOutside(e: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
-        setIsTyping(false);
-        setTypeError('');
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -104,76 +88,10 @@ export default function DatePicker({ value, onChange, placeholder = 'Select a da
     if (selected < today) return;
     onChange(dateStr);
     setIsOpen(false);
-    setIsTyping(false);
-    setTypeError('');
   }
 
   function handleBarClick() {
-    if (!isTyping) {
-      setIsOpen(!isOpen);
-    }
-  }
-
-  function handleTypeToggle(e: React.MouseEvent) {
-    e.stopPropagation();
-    setIsTyping(true);
-    setIsOpen(false);
-    setTypedValue(value || '');
-    setTypeError('');
-    setTimeout(() => inputRef.current?.focus(), 0);
-  }
-
-  function handleTypedChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setTypedValue(e.target.value);
-    setTypeError('');
-  }
-
-  function handleTypedSubmit() {
-    if (!typedValue.trim()) {
-      setTypeError('Please enter a date');
-      return;
-    }
-
-    let dateStr = typedValue.trim();
-
-    const mdyMatch = dateStr.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
-    if (mdyMatch) {
-      const m = mdyMatch[1].padStart(2, '0');
-      const d = mdyMatch[2].padStart(2, '0');
-      dateStr = `${mdyMatch[3]}-${m}-${d}`;
-    }
-
-    const mdyShortMatch = dateStr.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})$/);
-    if (mdyShortMatch) {
-      const m = mdyShortMatch[1].padStart(2, '0');
-      const d = mdyShortMatch[2].padStart(2, '0');
-      const yr = parseInt(mdyShortMatch[3]) > 50 ? '19' + mdyShortMatch[3] : '20' + mdyShortMatch[3];
-      dateStr = `${yr}-${m}-${d}`;
-    }
-
-    if (!isValidDateString(dateStr)) {
-      setTypeError('Invalid date. Use MM/DD/YYYY format.');
-      return;
-    }
-
-    const selected = new Date(dateStr + 'T00:00:00');
-    if (selected < today) {
-      setTypeError('Date cannot be in the past.');
-      return;
-    }
-
-    onChange(dateStr);
-    setIsTyping(false);
-    setTypeError('');
-  }
-
-  function handleTypedKeyDown(e: React.KeyboardEvent) {
-    if (e.key === 'Enter') {
-      handleTypedSubmit();
-    } else if (e.key === 'Escape') {
-      setIsTyping(false);
-      setTypeError('');
-    }
+    setIsOpen(!isOpen);
   }
 
   const daysInMonth = getDaysInMonth(viewYear, viewMonth);
@@ -189,44 +107,17 @@ export default function DatePicker({ value, onChange, placeholder = 'Select a da
     <div ref={containerRef} className="relative">
       <Calendar className="absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400 z-10 pointer-events-none" />
 
-      {isTyping ? (
-        <div className="flex items-center w-full border-4 rounded-2xl overflow-hidden transition" style={{ borderColor: '#072233' }}>
-          <input
-            ref={inputRef}
-            type="text"
-            value={typedValue}
-            onChange={handleTypedChange}
-            onKeyDown={handleTypedKeyDown}
-            onBlur={handleTypedSubmit}
-            placeholder="MM/DD/YYYY"
-            className="flex-1 pl-14 pr-4 py-5 outline-none text-lg font-medium"
-          />
-        </div>
-      ) : (
-        <div
-          onClick={handleBarClick}
-          className="w-full pl-14 pr-5 py-5 border-4 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition text-lg font-medium cursor-pointer flex items-center justify-between bg-white"
-          style={{ borderColor: '#072233' }}
-          tabIndex={0}
-          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen(!isOpen); } }}
-        >
-          <span className={value ? 'text-gray-900' : 'text-gray-400'}>
-            {value ? formatDateDisplay(value) : placeholder}
-          </span>
-          <button
-            onClick={handleTypeToggle}
-            className="text-sm font-semibold px-3 py-1.5 rounded-lg transition-colors duration-200 hover:bg-gray-100"
-            style={{ color: '#072233' }}
-            type="button"
-          >
-            Type it
-          </button>
-        </div>
-      )}
-
-      {typeError && (
-        <p className="text-red-500 text-sm mt-2 ml-2 font-medium">{typeError}</p>
-      )}
+      <div
+        onClick={handleBarClick}
+        className="w-full pl-14 pr-5 py-5 border-4 rounded-2xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition text-lg font-medium cursor-pointer flex items-center justify-between bg-white"
+        style={{ borderColor: '#072233' }}
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen(!isOpen); } }}
+      >
+        <span className={value ? 'text-gray-900' : 'text-gray-400'}>
+          {value ? formatDateDisplay(value) : placeholder}
+        </span>
+      </div>
 
       {isOpen && (
         <div className="absolute z-50 mt-2 left-0 right-0 md:right-auto md:w-80 bg-white rounded-xl shadow-2xl border border-gray-200 p-3 md:p-4">

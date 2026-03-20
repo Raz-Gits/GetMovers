@@ -255,6 +255,7 @@ function App() {
       gtag('event', 'form_submitted', {
         step_number: 4,
         step_name: 'quote_submitted',
+        lead_cost: 170,
       });
 
       setStep('select_type');

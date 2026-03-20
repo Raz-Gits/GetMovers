@@ -181,6 +181,7 @@ export default function BottomQuoteForm() {
       gtag('event', 'form_submitted', {
         step_number: 4,
         step_name: 'bottom_quote_submitted',
+        lead_cost: 170,
       });
       setShowConfirmation(true);
       setStep('select_type');

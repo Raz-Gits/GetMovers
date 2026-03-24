@@ -89,6 +89,27 @@ function App() {
     additionalNotes: '',
   });
 
+  const stepPagePaths: Record<FormStep, string> = {
+    select_type: '/form/step-select_type',
+    location: '/form/step-location',
+    move_date_size: '/form/step-move_date_size',
+    contact_info: '/form/step-contact_info',
+  };
+
+  const stepPageTitles: Record<FormStep, string> = {
+    select_type: 'Quote - Select Move Type',
+    location: 'Quote - Moving Locations',
+    move_date_size: 'Quote - Date & Size',
+    contact_info: 'Quote - Contact Info',
+  };
+
+  useEffect(() => {
+    gtag('event', 'page_view', {
+      page_path: stepPagePaths[step],
+      page_title: stepPageTitles[step],
+    });
+  }, [step]);
+
   useEffect(() => {
     const promoDismissed = localStorage.getItem('promoDismissed');
     if (promoDismissed) return;
@@ -256,6 +277,12 @@ function App() {
         step_number: 4,
         step_name: 'quote_submitted',
         lead_cost: 170,
+      });
+
+      gtag('event', 'generate_lead', {
+        value: 170,
+        currency: 'USD',
+        form_type: 'quote_request',
       });
 
       setStep('select_type');

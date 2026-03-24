@@ -62,6 +62,29 @@ export default function BottomQuoteForm() {
     currentAddress: '', destinationAddress: '', moveDate: '', homeSize: '',
   });
 
+  const bottomStepPagePaths: Record<FormStep, string> = {
+    select_type: '/bottom-form/step-select_type',
+    location: '/bottom-form/step-location',
+    move_date_size: '/bottom-form/step-move_date_size',
+    contact_info: '/bottom-form/step-contact_info',
+  };
+
+  const bottomStepPageTitles: Record<FormStep, string> = {
+    select_type: 'Bottom Quote - Select Move Type',
+    location: 'Bottom Quote - Moving Locations',
+    move_date_size: 'Bottom Quote - Date & Size',
+    contact_info: 'Bottom Quote - Contact Info',
+  };
+
+  useEffect(() => {
+    if (step !== 'select_type') {
+      gtag('event', 'page_view', {
+        page_path: bottomStepPagePaths[step],
+        page_title: bottomStepPageTitles[step],
+      });
+    }
+  }, [step]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
@@ -182,6 +205,11 @@ export default function BottomQuoteForm() {
         step_number: 4,
         step_name: 'bottom_quote_submitted',
         lead_cost: 170,
+      });
+      gtag('event', 'generate_lead', {
+        value: 170,
+        currency: 'USD',
+        form_type: 'bottom_quote_request',
       });
       setShowConfirmation(true);
       setStep('select_type');

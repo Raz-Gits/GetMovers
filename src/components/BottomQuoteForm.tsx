@@ -44,11 +44,6 @@ function formatPhone(value: string): string {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
 }
 
-function getSubId(): string {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('subid') || '';
-}
-
 export default function BottomQuoteForm() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -203,7 +198,6 @@ export default function BottomQuoteForm() {
           lastName: formData.lastName, email: formData.email, phone: formData.phone,
           currentAddress: formData.currentAddress, destinationAddress: formData.destinationAddress,
           moveDate: formData.moveDate, homeSize: formData.homeSize,
-          subid: getSubId(),
         }),
       });
       if (!response.ok) throw new Error('Submission failed');

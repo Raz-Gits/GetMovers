@@ -198,6 +198,7 @@ export default function BottomQuoteForm() {
           lastName: formData.lastName, email: formData.email, phone: formData.phone,
           currentAddress: formData.currentAddress, destinationAddress: formData.destinationAddress,
           moveDate: formData.moveDate, homeSize: formData.homeSize,
+          subid: sessionStorage.getItem('subid') || '',
         }),
       });
       if (!response.ok) throw new Error('Submission failed');

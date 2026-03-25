@@ -111,6 +111,14 @@ function App() {
   }, [step]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const subid = params.get('subid');
+    if (subid) {
+      sessionStorage.setItem('subid', subid);
+    }
+  }, []);
+
+  useEffect(() => {
     const promoDismissed = localStorage.getItem('promoDismissed');
     if (promoDismissed) return;
     promoTimerRef.current = setTimeout(() => {
@@ -268,6 +276,7 @@ function App() {
           moveDate: formData.moveDate,
           homeSize: formData.homeSize,
           additionalNotes: formData.additionalNotes,
+          subid: sessionStorage.getItem('subid') || '',
         }),
       });
 

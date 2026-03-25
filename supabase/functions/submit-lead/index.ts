@@ -19,6 +19,7 @@ interface LeadPayload {
   moveDate: string;
   homeSize: string;
   additionalNotes: string;
+  subid?: string;
 }
 
 function parseLocation(address: string): {
@@ -140,7 +141,11 @@ async function sendToHelloMoving(
     if (origin.zip) params.set("ozip", origin.zip);
     if (destination.zip) params.set("dzip", destination.zip);
     if (payload.additionalNotes) params.set("notes", payload.additionalNotes);
-    if (rowId) params.set("leadno", String(rowId));
+    if (payload.subid) {
+      params.set("leadno", payload.subid);
+    } else if (rowId) {
+      params.set("leadno", String(rowId));
+    }
 
     console.log("HelloMoving POST params:", params.toString());
 
@@ -221,6 +226,7 @@ Deno.serve(async (req: Request) => {
           additional_notes: payload.additionalNotes,
           hellomoving_status: "pending",
           hellomoving_response: "",
+          subid: payload.subid || null,
         },
       ])
       .select("id")

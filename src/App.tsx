@@ -56,6 +56,11 @@ function formatPhone(value: string): string {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
 }
 
+function getSubId(): string {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('subid') || '';
+}
+
 function App() {
   const [step, setStep] = useState<FormStep>('select_type');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -268,6 +273,7 @@ function App() {
           moveDate: formData.moveDate,
           homeSize: formData.homeSize,
           additionalNotes: formData.additionalNotes,
+          subid: getSubId(),
         }),
       });
 

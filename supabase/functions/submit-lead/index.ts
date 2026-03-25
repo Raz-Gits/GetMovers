@@ -19,6 +19,7 @@ interface LeadPayload {
   moveDate: string;
   homeSize: string;
   additionalNotes: string;
+  subid?: string;
 }
 
 function parseLocation(address: string): {
@@ -113,7 +114,7 @@ async function sendToHelloMoving(
     const phoneDigits = payload.phone.replace(/\D/g, "");
 
     const apiId = Deno.env.get("HELLOMOVING_API_ID_GetMovers");
-    const moverRef = Deno.env.get("HELLOMOVING_MOVER_REF");
+    const moverRef = payload.subid || Deno.env.get("HELLOMOVING_MOVER_REF");
 
     if (!apiId || !moverRef) {
       throw new Error("Missing HELLOMOVING_API_ID or HELLOMOVING_MOVER_REF environment variables");

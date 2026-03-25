@@ -121,7 +121,7 @@ export default function Header({ forceCollapsed = false, hideEstimators = false 
               </div>
 
               <a
-                href="tel:2405990097"
+                href="tel:2405990097#click-id#"
                 onClick={() => trackCallClick('header_phone')} // call_source: header_phone
                 className="flex items-center gap-2 md:gap-2.5 hover:opacity-90 transition-opacity duration-300 flex-shrink-0"
               >

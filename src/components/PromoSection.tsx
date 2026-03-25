@@ -52,7 +52,7 @@ export default function PromoSection({ onGetQuote }: { onGetQuote: () => void })
             <p className="text-gray-700 font-semibold text-base tracking-wide mb-5">
               CALL{' '}
               <a
-                href="tel:2405990097"
+                href="tel:2405990097#click-id#"
                 onClick={() => trackCallClick('promo_section_call')} // call_source: promo_section_call
                 className="phone-pop transition-all duration-200 inline-block"
                 style={{ color: '#072233' }}

@@ -719,7 +719,7 @@ function App() {
                 Starting at $1,999 — call us now and lock in your exclusive discount before it's gone.
               </p>
               <a
-                href="tel:2405990097"
+                href="tel:2405990097#click-id#"
                 onClick={() => trackCallClick('promo_modal_call')} // call_source: promo_modal_call
                 className="bg-red-600 text-white font-bold py-2 md:py-4 px-3 md:px-8 rounded-lg md:rounded-2xl transition-all duration-200 text-[11px] md:text-lg flex items-center justify-center gap-1 md:gap-2 hover:bg-red-700 hover:-translate-y-1 hover:shadow-lg w-full"
               >
@@ -814,7 +814,7 @@ function App() {
               <h3 className="text-lg font-bold text-gray-900 mb-1">Call Now & Save $500</h3>
               <p className="text-gray-600 text-sm mb-5">Exclusive phone-only discount for a limited time.</p>
               <a
-                href="tel:2405990097"
+                href="tel:2405990097#click-id#"
                 onClick={() => trackCallClick('location_modal_call')} // call_source: location_modal_call
                 className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 text-lg shadow-md w-full justify-center"
               >
@@ -861,7 +861,7 @@ function App() {
               <h3 className="text-lg font-bold text-gray-900 mb-1">Don't Want to Wait?</h3>
               <p className="text-gray-600 text-sm mb-5">Get $500 off for a Phone Estimate Today!</p>
               <a
-                href="tel:2405990097"
+                href="tel:2405990097#click-id#"
                 onClick={() => trackCallClick('confirmation_modal_call')} // call_source: confirmation_modal_call
                 className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 text-lg shadow-md w-full justify-center"
               >
@@ -892,7 +892,7 @@ function App() {
               <ul className="space-y-3 text-gray-400 text-sm">
                 <li className="flex items-start gap-3">
                   <Phone className="w-4 h-4 mt-0.5 text-red-500 shrink-0" />
-                  <a href="tel:2405990097" onClick={() => trackCallClick('footer_phone')} className="hover:text-white transition-colors phone-pop">(240) 599-0097</a> {/* call_source: footer_phone */}
+                  <a href="tel:2405990097#click-id#" onClick={() => trackCallClick('footer_phone')} className="hover:text-white transition-colors phone-pop">(240) 599-0097</a> {/* call_source: footer_phone */}
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail className="w-4 h-4 mt-0.5 text-red-500 shrink-0" />

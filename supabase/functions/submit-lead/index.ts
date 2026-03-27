@@ -72,9 +72,12 @@ function mapMoveSize(homeSize: string): string {
 
 async function sendToN8nWebhook(payload: LeadPayload, rowId: string): Promise<void> {
   try {
-    const res = await fetch(
-      "https://n8n-main-instance-production-7b51.up.railway.app/webhook/ab6568e9-a412-4e32-91fb-db7662f49107",
-      {
+    const n8nUrl = Deno.env.get("N8N_WEBHOOK_URL");
+    if (!n8nUrl) {
+      console.error("Missing N8N_WEBHOOK_URL env var");
+      return;
+    }
+    const res = await fetch(n8nUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

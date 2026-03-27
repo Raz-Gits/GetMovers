@@ -32,6 +32,7 @@ interface LeadPayload {
   homeSize: string;
   additionalNotes: string;
   subid?: string;
+  turnstileToken?: string;
 }
 
 function parseLocation(address: string): {
@@ -220,6 +221,34 @@ Deno.serve(async (req: Request) => {
 
   try {
     const payload: LeadPayload = await req.json();
+
+    const turnstileSecret = Deno.env.get("TURNSTILE_SECRET_KEY");
+    if (turnstileSecret) {
+      const verifyRes = await fetch(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({
+            secret: turnstileSecret,
+            response: payload.turnstileToken || "",
+          }).toString(),
+        }
+      );
+      const verifyData = await verifyRes.json();
+      if (!verifyData.success) {
+        console.error("Turnstile verification failed:", verifyData);
+        return new Response(
+          JSON.stringify({ success: false, error: "Bot verification failed" }),
+          {
+            status: 403,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          }
+        );
+      }
+    } else {
+      console.warn("TURNSTILE_SECRET_KEY not set — skipping bot verification");
+    }
 
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,

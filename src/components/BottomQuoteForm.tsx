@@ -46,6 +46,9 @@ function formatPhone(value: string): string {
 
 export default function BottomQuoteForm() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState('');
   const [visible, setVisible] = useState(false);
   const [step, setStep] = useState<FormStep>('select_type');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -93,6 +96,27 @@ export default function BottomQuoteForm() {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (step !== 'contact_info') return;
+    if (!turnstileRef.current || !window.turnstile) return;
+    if (turnstileWidgetId.current) return;
+    const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    if (!siteKey) return;
+    turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
+      sitekey: siteKey,
+      callback: (token: string) => setTurnstileToken(token),
+      'refresh-expired': 'auto',
+      theme: 'dark',
+    });
+    return () => {
+      if (turnstileWidgetId.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetId.current);
+        turnstileWidgetId.current = null;
+      }
+      setTurnstileToken('');
+    };
+  }, [step]);
 
   const scrollToForm = () => {
     sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -199,6 +223,7 @@ export default function BottomQuoteForm() {
           currentAddress: formData.currentAddress, destinationAddress: formData.destinationAddress,
           moveDate: formData.moveDate, homeSize: formData.homeSize,
           subid: sessionStorage.getItem('subid') || '',
+          turnstileToken,
         }),
       });
       if (!response.ok) throw new Error('Submission failed');
@@ -543,6 +568,8 @@ export default function BottomQuoteForm() {
                     {contactErrors.email && <p className="text-red-400 text-sm mt-2 ml-2 font-medium">{contactErrors.email}</p>}
                   </div>
                 </div>
+
+                <div ref={turnstileRef} className="flex justify-center" />
 
                 <button
                   onClick={handleContactNext}

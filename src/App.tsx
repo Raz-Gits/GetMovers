@@ -64,6 +64,9 @@ function App() {
   const [showLocationCallModal, setShowLocationCallModal] = useState(false);
   const [showPromo, setShowPromo] = useState(false);
   const [highlightMoveType, setHighlightMoveType] = useState(false);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState('');
   const promoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const promoReshowTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const promoDismissCountRef = useRef(0);
@@ -131,6 +134,26 @@ function App() {
       if (promoReshowTimerRef.current) clearTimeout(promoReshowTimerRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (step !== 'contact_info') return;
+    if (!turnstileRef.current || !window.turnstile) return;
+    if (turnstileWidgetId.current) return;
+    const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+    if (!siteKey) return;
+    turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
+      sitekey: siteKey,
+      callback: (token: string) => setTurnstileToken(token),
+      'refresh-expired': 'auto',
+    });
+    return () => {
+      if (turnstileWidgetId.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetId.current);
+        turnstileWidgetId.current = null;
+      }
+      setTurnstileToken('');
+    };
+  }, [step]);
 
   const handleMoveTypeSelect = (type: MoveType) => {
     gtag('event', 'form_step', {
@@ -277,6 +300,7 @@ function App() {
           homeSize: formData.homeSize,
           additionalNotes: formData.additionalNotes,
           subid: sessionStorage.getItem('subid') || '',
+          turnstileToken,
         }),
       });
 
@@ -681,6 +705,8 @@ function App() {
                   </div>
                 </div>
               </div>
+
+              <div ref={turnstileRef} className="flex justify-center" />
 
               <button
                 onClick={handleContactNext}
